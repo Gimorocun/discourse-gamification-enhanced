@@ -1,0 +1,36 @@
+zh_CN:
+  admin_js:
+    admin:
+      site_settings:
+        categories:
+          gamification_enhanced: "Gamification 增强"
+  js:
+    gamification_enhanced:
+      admin:
+        title: "Gamification 增强"
+        score_adjustment: "手动调整积分"
+        description: "为指定用户手动增加或减少 Gamification 积分。排行榜将按系统默认节奏自动刷新。"
+      form:
+        user_section: "用户"
+        user_section_help: "请选择一种标识方式，并填写对应字段。"
+        identifier_username: "用户名"
+        identifier_user_id: "用户 ID"
+        identifier_email: "邮箱"
+        username: "用户名"
+        username_placeholder: "例如 alice"
+        user_id: "用户 ID"
+        user_id_placeholder: "例如 42"
+        email: "邮箱"
+        email_placeholder: "例如 alice@example.com"
+        points_section: "积分"
+        points: "分值"
+        points_placeholder: "请输入正整数"
+        action_add: "加分"
+        action_subtract: "减分"
+        description: "描述"
+        description_placeholder: "可选，记录本次调整原因"
+        submit: "提交调整"
+        success: "积分调整已保存。"
+        last_result: "最近一次调整"
+        last_result_detail: "%{username} 在 %{date} 获得了 %{points} 分。"
+        refresh_notice: "排行榜会自动更新，无需手动刷新。"

@@ -1,0 +1,4 @@
+gamification_enhanced:
+  gamification_enhanced_enabled:
+    default: true
+    client: true
