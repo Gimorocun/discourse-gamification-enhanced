@@ -7,6 +7,7 @@ export default <template>
   <DModal
     class="gamification-score-adjustment-modal"
     @title={{i18n (themePrefix "gamification_enhanced.admin.score_adjustment")}}
+    @closeModal={{@closeModal}}
   >
     <:body>
       <GamificationScoreAdjustmentForm @showPageHeader={{true}} />
