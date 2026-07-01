@@ -26,6 +26,7 @@ zh_CN:
       description_placeholder: "可选，记录本次调整原因"
       submit: "提交调整"
       success: "积分调整已保存。"
+      open_via_header: "也可点击页面右上角的「手动调整积分」按钮打开表单。"
       user_not_found: "未找到匹配的用户。"
       multiple_users_found: "该邮箱匹配到多个用户，请改用用户名或用户 ID。"
       last_result: "最近一次调整"

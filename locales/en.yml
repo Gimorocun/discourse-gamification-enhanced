@@ -26,6 +26,7 @@ en:
       description_placeholder: "Optional note for this adjustment"
       submit: "Apply adjustment"
       success: "Score adjustment saved."
+      open_via_header: "You can also use the Adjust scores button in the page header."
       user_not_found: "No matching user was found."
       multiple_users_found: "Multiple users matched that email. Please use username or user ID instead."
       last_result: "Last adjustment"

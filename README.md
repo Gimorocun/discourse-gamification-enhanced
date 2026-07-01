@@ -15,14 +15,15 @@
 
 ## 使用
 
-1. 进入 **管理 → 插件 → Gamification**（`discourse-gamification`）
-2. 顶部标签页会出现 **手动调整积分**（在「设置」旁边）
-3. 选择用户标识方式（用户名 / 用户 ID / 邮箱），填写分值与描述
-4. 选择 **加分** 或 **减分**，提交
+1. 进入 **管理 → 插件 → Gamification**
+2. 应能看到以下入口之一：
+   - 顶部标签页 **手动调整积分**（在「排行榜」旁边）
+   - 页面右上角 **手动调整积分** 按钮（打开弹窗表单）
+3. 填写用户信息、分值与描述，选择加分或减分后提交
 
-也可直接访问：
+也可直接访问：`/admin/plugins/discourse-gamification/score-adjustments`
 
-`/admin/plugins/discourse-gamification/score-adjustments`
+> 若标签页未出现，请使用右上角按钮，或确认组件已添加到**当前启用的主题**并刷新页面。
 
 ## 调用的 API
 
