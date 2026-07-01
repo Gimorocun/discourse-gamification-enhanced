@@ -1,5 +1,5 @@
 import { ajax } from "discourse/lib/ajax";
-import { i18n } from "discourse-i18n";
+import { t } from "./gamification-score-adjustment-i18n";
 
 export async function resolveUser(identifierType, { username, userId, email }) {
   switch (identifierType) {
@@ -10,7 +10,7 @@ export async function resolveUser(identifierType, { username, userId, email }) {
     case "user_id": {
       const id = parseInt(userId, 10);
       if (!id) {
-        throw { message: i18n("gamification_enhanced.form.user_not_found") };
+        throw { message: t("gamification_enhanced.form.user_not_found") };
       }
       return await ajax(`/admin/users/${id}.json`);
     }
@@ -24,19 +24,19 @@ export async function resolveUser(identifierType, { username, userId, email }) {
       const users = data.users || [];
 
       if (users.length === 0) {
-        throw { message: i18n("gamification_enhanced.form.user_not_found") };
+        throw { message: t("gamification_enhanced.form.user_not_found") };
       }
 
       if (users.length > 1) {
         throw {
-          message: i18n("gamification_enhanced.form.multiple_users_found"),
+          message: t("gamification_enhanced.form.multiple_users_found"),
         };
       }
 
       return users[0];
     }
     default:
-      throw { message: i18n("gamification_enhanced.form.user_not_found") };
+      throw { message: t("gamification_enhanced.form.user_not_found") };
   }
 }
 

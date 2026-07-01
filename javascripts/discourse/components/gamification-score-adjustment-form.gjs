@@ -9,11 +9,11 @@ import { eq, not } from "discourse/truth-helpers";
 import { popupAjaxError } from "discourse/lib/ajax-error";
 import DButton from "discourse/ui-kit/d-button";
 import DPageSubheader from "discourse/ui-kit/d-page-subheader";
-import { i18n } from "discourse-i18n";
 import {
   createScoreEvent,
   resolveUser,
 } from "../lib/gamification-score-adjustment-api";
+import { t } from "../lib/gamification-score-adjustment-i18n";
 
 export default class GamificationScoreAdjustmentForm extends Component {
   @service siteSettings;
@@ -128,7 +128,7 @@ export default class GamificationScoreAdjustmentForm extends Component {
       this.toasts.success({
         duration: "short",
         data: {
-          message: i18n("gamification_enhanced.form.success"),
+          message: t("gamification_enhanced.form.success"),
         },
       });
 
@@ -151,22 +151,26 @@ export default class GamificationScoreAdjustmentForm extends Component {
     <div class="gamification-enhanced-score-adjustment admin-detail">
       {{#unless @showPageHeader}}
         <DPageSubheader
-          @titleLabel={{i18n "gamification_enhanced.admin.score_adjustment"}}
-          @descriptionLabel={{i18n "gamification_enhanced.admin.description"}}
+          @titleLabel={{i18n
+            (themePrefix "gamification_enhanced.admin.score_adjustment")
+          }}
+          @descriptionLabel={{i18n
+            (themePrefix "gamification_enhanced.admin.description")
+          }}
         />
       {{/unless}}
 
       {{#unless this.gamificationEnabled}}
         <p class="alert alert-error">
-          {{i18n "gamification_enhanced.form.gamification_disabled"}}
+          {{i18n (themePrefix "gamification_enhanced.form.gamification_disabled")}}
         </p>
       {{/unless}}
 
       <div class="gamification-enhanced-score-adjustment__form">
         <section class="gamification-enhanced-score-adjustment__section">
-          <h3>{{i18n "gamification_enhanced.form.user_section"}}</h3>
+          <h3>{{i18n (themePrefix "gamification_enhanced.form.user_section")}}</h3>
           <p class="gamification-enhanced-score-adjustment__help">
-            {{i18n "gamification_enhanced.form.user_section_help"}}
+            {{i18n (themePrefix "gamification_enhanced.form.user_section_help")}}
           </p>
 
           <div class="gamification-enhanced-score-adjustment__radio-group">
@@ -178,7 +182,7 @@ export default class GamificationScoreAdjustmentForm extends Component {
                 checked={{eq this.identifierType "username"}}
                 {{on "change" (fn this.setIdentifierType "username")}}
               />
-              {{i18n "gamification_enhanced.form.identifier_username"}}
+              {{i18n (themePrefix "gamification_enhanced.form.identifier_username")}}
             </label>
 
             <label>
@@ -189,7 +193,7 @@ export default class GamificationScoreAdjustmentForm extends Component {
                 checked={{eq this.identifierType "user_id"}}
                 {{on "change" (fn this.setIdentifierType "user_id")}}
               />
-              {{i18n "gamification_enhanced.form.identifier_user_id"}}
+              {{i18n (themePrefix "gamification_enhanced.form.identifier_user_id")}}
             </label>
 
             <label>
@@ -200,17 +204,19 @@ export default class GamificationScoreAdjustmentForm extends Component {
                 checked={{eq this.identifierType "email"}}
                 {{on "change" (fn this.setIdentifierType "email")}}
               />
-              {{i18n "gamification_enhanced.form.identifier_email"}}
+              {{i18n (themePrefix "gamification_enhanced.form.identifier_email")}}
             </label>
           </div>
 
           {{#if (eq this.identifierType "username")}}
             <label class="gamification-enhanced-score-adjustment__field">
-              <span>{{i18n "gamification_enhanced.form.username"}}</span>
+              <span>{{i18n (themePrefix "gamification_enhanced.form.username")}}</span>
               <input
                 type="text"
                 value={{this.username}}
-                placeholder={{i18n "gamification_enhanced.form.username_placeholder"}}
+                placeholder={{i18n
+                  (themePrefix "gamification_enhanced.form.username_placeholder")
+                }}
                 {{on "input" (withEventValue this.updateUsername)}}
               />
             </label>
@@ -218,12 +224,14 @@ export default class GamificationScoreAdjustmentForm extends Component {
 
           {{#if (eq this.identifierType "user_id")}}
             <label class="gamification-enhanced-score-adjustment__field">
-              <span>{{i18n "gamification_enhanced.form.user_id"}}</span>
+              <span>{{i18n (themePrefix "gamification_enhanced.form.user_id")}}</span>
               <input
                 type="number"
                 min="1"
                 value={{this.userId}}
-                placeholder={{i18n "gamification_enhanced.form.user_id_placeholder"}}
+                placeholder={{i18n
+                  (themePrefix "gamification_enhanced.form.user_id_placeholder")
+                }}
                 {{on "input" (withEventValue this.updateUserId)}}
               />
             </label>
@@ -231,11 +239,13 @@ export default class GamificationScoreAdjustmentForm extends Component {
 
           {{#if (eq this.identifierType "email")}}
             <label class="gamification-enhanced-score-adjustment__field">
-              <span>{{i18n "gamification_enhanced.form.email"}}</span>
+              <span>{{i18n (themePrefix "gamification_enhanced.form.email")}}</span>
               <input
                 type="email"
                 value={{this.email}}
-                placeholder={{i18n "gamification_enhanced.form.email_placeholder"}}
+                placeholder={{i18n
+                  (themePrefix "gamification_enhanced.form.email_placeholder")
+                }}
                 {{on "input" (withEventValue this.updateEmail)}}
               />
             </label>
@@ -243,15 +253,17 @@ export default class GamificationScoreAdjustmentForm extends Component {
         </section>
 
         <section class="gamification-enhanced-score-adjustment__section">
-          <h3>{{i18n "gamification_enhanced.form.points_section"}}</h3>
+          <h3>{{i18n (themePrefix "gamification_enhanced.form.points_section")}}</h3>
 
           <label class="gamification-enhanced-score-adjustment__field">
-            <span>{{i18n "gamification_enhanced.form.points"}}</span>
+            <span>{{i18n (themePrefix "gamification_enhanced.form.points")}}</span>
             <input
               type="number"
               min="1"
               value={{this.points}}
-              placeholder={{i18n "gamification_enhanced.form.points_placeholder"}}
+              placeholder={{i18n
+                (themePrefix "gamification_enhanced.form.points_placeholder")
+              }}
               {{on "input" (withEventValue this.updatePoints)}}
             />
           </label>
@@ -265,7 +277,7 @@ export default class GamificationScoreAdjustmentForm extends Component {
                 checked={{eq this.actionType "add"}}
                 {{on "change" (fn this.setActionType "add")}}
               />
-              {{i18n "gamification_enhanced.form.action_add"}}
+              {{i18n (themePrefix "gamification_enhanced.form.action_add")}}
             </label>
 
             <label>
@@ -276,19 +288,19 @@ export default class GamificationScoreAdjustmentForm extends Component {
                 checked={{eq this.actionType "subtract"}}
                 {{on "change" (fn this.setActionType "subtract")}}
               />
-              {{i18n "gamification_enhanced.form.action_subtract"}}
+              {{i18n (themePrefix "gamification_enhanced.form.action_subtract")}}
             </label>
           </div>
         </section>
 
         <section class="gamification-enhanced-score-adjustment__section">
           <label class="gamification-enhanced-score-adjustment__field">
-            <span>{{i18n "gamification_enhanced.form.description"}}</span>
+            <span>{{i18n (themePrefix "gamification_enhanced.form.description")}}</span>
             <textarea
               rows="3"
               value={{this.description}}
               placeholder={{i18n
-                "gamification_enhanced.form.description_placeholder"
+                (themePrefix "gamification_enhanced.form.description_placeholder")
               }}
               {{on "input" (withEventValue this.updateDescription)}}
             ></textarea>
@@ -297,7 +309,7 @@ export default class GamificationScoreAdjustmentForm extends Component {
 
         <div class="gamification-enhanced-score-adjustment__actions">
           <DButton
-            @label="gamification_enhanced.form.submit"
+            @translatedLabel={{i18n (themePrefix "gamification_enhanced.form.submit")}}
             class="btn-primary"
             @disabled={{not this.canSubmit}}
             @action={{this.submit}}
@@ -307,10 +319,10 @@ export default class GamificationScoreAdjustmentForm extends Component {
 
       {{#if this.lastEvent}}
         <div class="gamification-enhanced-score-adjustment__result">
-          <h4>{{i18n "gamification_enhanced.form.last_result"}}</h4>
+          <h4>{{i18n (themePrefix "gamification_enhanced.form.last_result")}}</h4>
           <p>
             {{i18n
-              "gamification_enhanced.form.last_result_detail"
+              (themePrefix "gamification_enhanced.form.last_result_detail")
               username=this.lastEvent.username
               points=this.lastEvent.points
               date=this.lastEvent.date
@@ -322,7 +334,7 @@ export default class GamificationScoreAdjustmentForm extends Component {
             </p>
           {{/if}}
           <p class="gamification-enhanced-score-adjustment__help">
-            {{i18n "gamification_enhanced.form.refresh_notice"}}
+            {{i18n (themePrefix "gamification_enhanced.form.refresh_notice")}}
           </p>
         </div>
       {{/if}}

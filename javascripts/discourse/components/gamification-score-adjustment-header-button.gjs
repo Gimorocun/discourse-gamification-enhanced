@@ -14,7 +14,9 @@ export default class GamificationScoreAdjustmentHeaderButton extends Component {
 
   <template>
     <DButton
-      @label="gamification_enhanced.admin.score_adjustment"
+      @translatedLabel={{i18n
+        (themePrefix "gamification_enhanced.admin.score_adjustment")
+      }}
       @icon="award"
       class="btn-default"
       @action={{this.openScoreAdjustment}}
