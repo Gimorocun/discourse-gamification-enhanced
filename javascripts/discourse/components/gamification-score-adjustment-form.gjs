@@ -14,7 +14,6 @@ import {
   createScoreEvent,
   resolveUser,
 } from "../lib/gamification-score-adjustment-api";
-import { t } from "../lib/gamification-score-adjustment-i18n";
 
 export default class GamificationScoreAdjustmentForm extends Component {
   @service siteSettings;
@@ -129,7 +128,7 @@ export default class GamificationScoreAdjustmentForm extends Component {
       this.toasts.success({
         duration: "short",
         data: {
-          message: t("gamification_enhanced.form.success"),
+          message: i18n(themePrefix("gamification_enhanced.form.success")),
         },
       });
 

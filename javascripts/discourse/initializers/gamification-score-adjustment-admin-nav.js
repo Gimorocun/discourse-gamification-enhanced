@@ -1,7 +1,8 @@
 import { configNavForPlugin } from "discourse/lib/admin-plugin-config-nav";
 import { withPluginApi } from "discourse/lib/plugin-api";
+import { i18n } from "discourse-i18n";
+import { themePrefix } from "virtual:theme";
 import GamificationScoreAdjustmentHeaderButton from "../components/gamification-score-adjustment-header-button";
-import { t } from "../lib/gamification-score-adjustment-i18n";
 
 const GAMIFICATION_PLUGIN_ID = "discourse-gamification";
 const SCORE_ROUTE = "adminPlugins.show.discourse-gamification-score-adjustments";
@@ -12,7 +13,7 @@ function registerGamificationScoreAdjustmentNav() {
 
   if (!links.some((link) => link.route === SCORE_ROUTE)) {
     links.push({
-      text: t("gamification_enhanced.admin.score_adjustment"),
+      text: i18n(themePrefix("gamification_enhanced.admin.score_adjustment")),
       route: SCORE_ROUTE,
     });
   }
