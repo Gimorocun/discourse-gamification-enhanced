@@ -9,6 +9,7 @@ import { eq, not } from "discourse/truth-helpers";
 import { popupAjaxError } from "discourse/lib/ajax-error";
 import DButton from "discourse/ui-kit/d-button";
 import DPageSubheader from "discourse/ui-kit/d-page-subheader";
+import { i18n } from "discourse-i18n";
 import {
   createScoreEvent,
   resolveUser,

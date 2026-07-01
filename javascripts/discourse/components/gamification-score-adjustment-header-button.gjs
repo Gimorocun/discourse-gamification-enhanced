@@ -2,6 +2,7 @@ import Component from "@glimmer/component";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
 import DButton from "discourse/ui-kit/d-button";
+import { i18n } from "discourse-i18n";
 import GamificationScoreAdjustmentModal from "./gamification-score-adjustment-modal";
 
 export default class GamificationScoreAdjustmentHeaderButton extends Component {
