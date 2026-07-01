@@ -1,0 +1,6 @@
+gamification_score_adjustment_enabled:
+  default: true
+  type: bool
+  description:
+    en: "Show the manual score adjustment tab on the Gamification admin page."
+    zh_CN: "在 Gamification 管理页面显示手动调整积分标签页。"

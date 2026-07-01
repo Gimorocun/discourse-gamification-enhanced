@@ -1,48 +1,53 @@
-# Discourse Gamification Enhanced
+# Gamification Score Adjustment（主题组件）
 
-为 Discourse 内置 Gamification 插件提供管理员手动加减积分界面。
+通过内置 Gamification 插件已有 API，在管理后台提供手动加减积分表单。**无需安装 Ruby 插件，无需单独编译插件 JS。**
 
 ## 依赖
 
-- Discourse 内置 `discourse-gamification` 插件已启用（`discourse_gamification_enabled`）
+- Discourse 内置 `discourse-gamification` 插件已启用
 
 ## 安装
 
-将本目录放入 Discourse 的 `plugins/` 目录，例如：
-
-```bash
-ln -s /path/to/discourse-gamification-enhanced /path/to/discourse/plugins/discourse-gamification-enhanced
-```
-
-然后重启 Discourse，在 **管理 → 插件** 中启用 **Gamification Enhanced**。
+1. 若曾以插件方式安装，请先移除 `plugins/discourse-gamification-enhanced` 软链接
+2. 在 **管理 → 自定义 → 组件** 中安装本仓库
+3. 将组件添加到你正在使用的主题上
+4. 刷新页面（主题 JS 会自动随主题更新）
 
 ## 使用
 
-1. 进入 **管理 → 插件 → Gamification Enhanced**
-2. 打开 **手动调整积分** 标签页
-3. 选择用户标识方式（用户名 / 用户 ID / 邮箱），填写对应字段
-4. 输入分值，选择 **加分** 或 **减分**
-5. 可选填写描述，点击 **提交调整**
+1. 进入 **管理 → 插件 → Gamification**（`discourse-gamification`）
+2. 顶部标签页会出现 **手动调整积分**（在「设置」旁边）
+3. 选择用户标识方式（用户名 / 用户 ID / 邮箱），填写分值与描述
+4. 选择 **加分** 或 **减分**，提交
 
-积分会写入 Gamification 的 `gamification_score_events` 表，排行榜按系统默认机制（约每小时）自动刷新，无需手动重算。
+也可直接访问：
 
-## API
+`/admin/plugins/discourse-gamification/score-adjustments`
 
-管理员可调用：
+## 调用的 API
 
-```http
-POST /admin/plugins/discourse-gamification-enhanced/score-adjustments.json
+组件不自带后端，直接调用 Gamification 已有接口：
+
+| 步骤 | 接口 |
+|------|------|
+| 按用户名查用户 | `GET /u/{username}.json` |
+| 按用户 ID 查用户 | `GET /admin/users/{id}.json` |
+| 按邮箱查用户 | `GET /admin/users/list/active.json?email=...&show_emails=true` |
+| 写入积分 | `POST /admin/plugins/gamification/score_events.json` |
+
+`POST` 参数示例：
+
+```json
+{
+  "user_id": 42,
+  "date": "2026-06-30",
+  "points": 10,
+  "description": "活动奖励"
+}
 ```
 
-参数：
+减分时 `points` 传负数。排行榜按 Gamification 默认机制自动刷新，无需手动重算。
 
-| 参数 | 说明 |
-|------|------|
-| `identifier_type` | `username` / `user_id` / `email` |
-| `username` | 用户名（`identifier_type=username` 时） |
-| `user_id` | 用户 ID（`identifier_type=user_id` 时） |
-| `email` | 邮箱（`identifier_type=email` 时） |
-| `points` | 正整数 |
-| `action_type` | `add` 或 `subtract` |
-| `description` | 可选描述 |
-| `date` | 可选日期（默认今天） |
+## 组件设置
+
+- `gamification_score_adjustment_enabled`：是否在 Gamification 管理页显示该标签页（默认开启）
