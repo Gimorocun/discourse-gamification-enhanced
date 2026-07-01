@@ -1,6 +1,6 @@
 import DBreadcrumbsItem from "discourse/ui-kit/d-breadcrumbs-item";
 import { i18n } from "discourse-i18n";
-import GamificationScoreAdjustmentForm from "../../components/gamification-score-adjustment-form";
+import GamificationScoreAdjustmentForm from "../../../components/gamification-score-adjustment-form";
 
 export default <template>
   <DBreadcrumbsItem
